@@ -18,7 +18,7 @@ RUN 		apt-get install -y openssh-server
 RUN 		mkdir /root/.ssh
 RUN 		mkdir /var/run/sshd
 ADD 		ssh.conf /etc/ssh/sshd_config
-RUN 		/usr/sbin/sshd -D
+# RUN 		/usr/sbin/sshd -D
 
 ENTRYPOINT  ["/bin/bash"]
 
