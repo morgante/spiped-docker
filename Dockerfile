@@ -25,7 +25,11 @@ RUN 		chown root:root /root/.ssh/authorized_keys
 # RUN 		/usr/sbin/sshd
 # ssh -oStrictHostKeyChecking=no -f -N -D 0.0.0.0:1080 localhost
 
-ENTRYPOINT  ["/bin/bash"]
+# Aggregate commands into one script
+ADD 		run.sh /spiped/run.sh
+RUN 		chmod 777 /spiped/run.sh
+
+ENTRYPOINT  ["/spiped/run.sh"]
 
 #RUN 		/spiped/spiped/spiped -d -s '[0.0.0.0]:8089' -t '[127.0.0.1]:1080' -k  /spiped/spiped.key
 #RUN 		ls
