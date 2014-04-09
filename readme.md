@@ -9,12 +9,16 @@ Setting up the server for this is quite simple, assuming you have [Docker](http:
 
 	```git clone https://github.com/morgante/spiped-docker /home/spiped```
 2. Enter the spiped directory, where the magic happens:
+
 	```cd /home/spiped```
 3. Generate a secure key for the spiped socket to use for communication across the internet.
+
 	```dd if=/dev/urandom bs=32 count=1 of=spiped.key```
 4. Build the Docker image (it will automatically load the key you just generated)
+
 	```docker build -t spiped .```
 5. Start the spiped server with Docker:
+
 	```docker run -d -p 49168:8089 -t spiped```
 
 You now have a fully functional SOCKS proxy listening on port 49168 and secured using a private key.
@@ -23,10 +27,13 @@ You now have a fully functional SOCKS proxy listening on port 49168 and secured 
 On the client, all you need to do is installed spiped and connect to the server. These instructions are for OS X, but the process should be similar for other operating systems.
 
 1. Install spiped (with [Homebrew](http://brew.sh)).
+
 	```brew install spiped```
 2. Copy the private key from your server.
+
 	```scp username@server.name:/home/spiped/spiped.key ~/spiped.key```
 3. Start the spiped client:
+
 	```spiped -e -f -s '[0.0.0.0]:8089' -t '[107.170.94.89]:49168' -k ~/spiped.key```
 4. In System Preferences, configure your network to connect to a SOCKS proxy at **localhost:8089**.
 
