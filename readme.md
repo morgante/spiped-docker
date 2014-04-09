@@ -29,6 +29,8 @@ On the client, all you need to do is installed spiped and connect to the server.
 	```spiped -e -f -s '[0.0.0.0]:8089' -t '[107.170.94.89]:49168' -k ~/spiped.key```
 4. In System Preferences, configure your network to connect to a SOCKS proxy at **localhost:8089**.
 
-Now all your internet activity is securely routed through your server. In my experience, this technique is also faster than standard SSH tunnels and handles disconnects more gracefully.
+Now all your internet activity is securely routed through your server. If you want to automate this slightly more, I have written a very simple [start script](https://github.com/morgante/dotfiles/blob/master/home/.tunnel-start).
+
+In my experience, the spiped tunnel is highly reliable and recovers more gracefully than a standard SSH tunnel.
 
 Leave any questions in the comments and I'll do my best to answer.
