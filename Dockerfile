@@ -19,10 +19,11 @@ RUN 		mkdir /root/.ssh
 RUN 		mkdir /var/run/sshd
 ADD 		ssh.conf /etc/ssh/sshd_config
 RUN 		ssh-keygen -q -f /root/.ssh/id_rsa -N ""
-RUN 		cp /root/.ssh/id_rsa /root/.ssh/authorized_keys
+RUN 		cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 RUN 		chown root:root /root/.ssh/authorized_keys
 
-# RUN 		/usr/sbin/sshd -D
+# RUN 		/usr/sbin/sshd
+# ssh -oStrictHostKeyChecking=no -f -N -D 0.0.0.0:1080 localhost
 
 ENTRYPOINT  ["/bin/bash"]
 
