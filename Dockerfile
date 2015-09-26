@@ -1,4 +1,4 @@
-FROM        ubuntu:12.10
+FROM        ubuntu:12.04
 
 RUN 		apt-get update -y
 
